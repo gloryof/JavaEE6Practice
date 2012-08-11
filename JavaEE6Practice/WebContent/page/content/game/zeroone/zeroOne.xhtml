@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/page/template/layout.xhtml">
+	<ui:define name="content">
+		<h:form id="zeroOneForm">
+			<h:inputHidden id="roundIndex" value="#{zeroOnePage.roundIndex}" />
+			<h:inputHidden id="disabledPrevButton" value="#{zeroOnePage.disabledPrevButton}" />
+			<div>
+				<h1>
+					<h:outputText value="ROUND" />
+					<h:outputText value="#{zeroOnePage.roundIndex + 1}" />
+					<h:outputText value="/" />
+					<h:outputText value="#{zeroOnePage.totalRound}" />
+				</h1>
+			</div>
+			<div>
+				<div>
+					<h:outputText id="restPoint" value="#{zeroOnePage.restPoint}" />
+					<h:outputText value="/" />
+					<h:outputText id="initPoint" value="#{zeroOnePage.initPoint}" />
+				</div>
+				<div id="throw">
+					<div id="throws1">
+						<p>Throw 1</p>
+						<h:selectOneMenu id="throwOneNumber" value="#{zeroOnePage.throwOneNumber}" >
+							<f:selectItems value="#{zeroOnePage.getNumberList()}" />
+						</h:selectOneMenu>
+						<h:selectOneMenu id="throwOneCount" value="#{zeroOnePage.throwOneCount}" >
+							<f:selectItems value="#{zeroOnePage.getCountList()}" />
+						</h:selectOneMenu>
+					</div>
+					<div id="throws2">
+						<p>Throw 2</p>
+						<h:selectOneMenu id="throwTwoNumber" value="#{zeroOnePage.throwTwoNumber}" >
+							<f:selectItems value="#{zeroOnePage.getNumberList()}" />
+						</h:selectOneMenu>
+						<h:selectOneMenu id="throwTwoCount" value="#{zeroOnePage.throwTwoCount}" >
+							<f:selectItems value="#{zeroOnePage.getCountList()}" />
+						</h:selectOneMenu>
+					</div>
+					<div id="throws3">
+						<p>Throw 3</p>
+						<h:selectOneMenu id="throwThreeNumber" value="#{zeroOnePage.throwThreeNumber}" >
+							<f:selectItems value="#{zeroOnePage.getNumberList()}" />
+						</h:selectOneMenu>
+						<h:selectOneMenu id="throwThreeCount" value="#{zeroOnePage.throwThreeCount}" >
+							<f:selectItems value="#{zeroOnePage.getCountList()}" />
+						</h:selectOneMenu>
+					</div>
+					<div id="buttonGameArea">
+						<div id="prevButtonArea">
+							<h:commandButton action="#{zeroOnePage.prevRound()}" value="Prev" disabled="#{zeroOnePage.disabledPrevButton}" />
+						</div>
+						<div id="nextButtonArea">
+							<h:commandButton action="#{zeroOnePage.next()}" value="Next" />
+						</div>
+					</div>
+					<div id="buttonArea">
+						<div id="gameResetButtonArea">
+							<h:commandButton action="#{zeroOnePage.reset()}" value="Reset" />
+						</div>
+						<div id="resultViewButtonArea">
+							<h:commandButton action="#{zeroOneResultPage.init()}" value="Result" />
+						</div>
+						<div id="gameExitButtonArea">
+							<h:commandButton action="#{mainMenuPage.init()}" value="Exit" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"> 
+	<f:view>
+		<h:head>
+			<meta http-equiv="Content-Type" content="text/html; charset=Windows-31J" />
+			<title>ダーツ ログイン</title>
+			<link rel="stylesheet" type="text/css" href="#{pageContext.request.contextPath}/JavaEE6Practice/resources/css/style.css" />
+		</h:head>
+		<h:body>
+			<h:form id="loginForm">
+				<div id="userIdRow">
+					<span id="userIdLabel">ユーザID</span>
+					<span id="userIdInput">
+						<h:inputText id="userId" value="#{indexPage.userId}" label="ユーザID" >
+							<f:validateRequired/>
+						</h:inputText>
+					</span>
+				</div>
+				<div id="passwordRow">
+					<span id="passwordLabel">パスワード</span>
+					<span id="passwordInput">
+						<h:inputSecret id="password" value="#{indexPage.password}"  label="パスワード" >
+							<f:validateRequired for="password" />
+						</h:inputSecret>
+					</span>
+				</div>
+				<div>
+					<h:commandButton action="#{indexPage.login}" value="ログイン" />
+				</div>
+				<h:messages errorClass="errorStyle"/>
+			</h:form>
+		</h:body>
+	</f:view>
+</html> 

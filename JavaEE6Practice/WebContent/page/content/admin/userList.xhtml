@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/page/template/adminLayout.xhtml">
+	<ui:define name="adminContent">
+		<h:form id="userListForm">
+			<div id="buttonArea">
+				<h:commandButton action="#{editUserPage.initForEntry()}" value="新規作成" />
+				<h:commandButton action="#{userListPage.changeActive(true)}" value="有効にする" />
+				<h:commandButton action="#{userListPage.changeActive(false)}" value="無効にする" />
+			</div>
+			<div>
+				<h:dataTable id="userList" var="userData" value="#{userListPage.userList}">
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="有効状態" />
+						</f:facet>
+						<h:outputText value="■" style="color:blue" rendered="#{userData.active}" />
+						<h:outputText value="■" style="color:gray" rendered="#{!userData.active}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="ユーザID" />
+						</f:facet>
+						<h:commandLink id="userIdLink" action="#{editUserPage.initForView(userData.userId)}" value="#{userData.userId}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="ユーザ名" />
+						</f:facet>
+						<h:outputText value="#{userData.name}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="選択" />
+						</f:facet>
+						<h:selectBooleanCheckbox value="#{userListPage.checkedUserIdMap[userData.userId]}" />
+					</h:column>
+				</h:dataTable>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

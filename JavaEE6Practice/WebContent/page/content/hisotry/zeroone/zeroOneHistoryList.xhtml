@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/page/template/layout.xhtml">
+	<ui:define name="content">
+		<h:form id="zeroOneHistoryListForm">
+			<div id="historyList">
+				<h:dataTable id="historyListTable" var="data" value="#{zeroOneHistoryListPage.historyBeanList}" >
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="No." />
+						</f:facet>
+						<h:outputText value="#{data.seqNo}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="終了ラウンド" />
+						</f:facet>
+						<h:outputText value="#{data.endRoundIndex + 1}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="スタッツ" />
+						</f:facet>
+						<h:outputText value="#{data.stats}" />
+					</h:column>
+					<h:column>
+						<f:facet name="header">
+							<h:outputText value="プレー時間" />
+						</f:facet>
+						<h:outputText value="#{data.playDate}" >
+							<f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" locale="ja_JP" timeZone="JST" />
+						</h:outputText>
+					</h:column>
+					<h:column>
+						<h:commandButton action="#{zeroOneHistoryDetailPage.init(data.gameId)}" value="詳細" />
+					</h:column>
+				</h:dataTable>
+			</div>
+			<div id="buttonArea">
+				<h:commandButton action="#{mainMenuPage.init()}" value="戻る" />
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/page/template/layout.xhtml">
+	<ui:define name="content">
+		<h:form id="countUpForm">
+			<h:inputHidden id="roundIndex" value="#{countUpPage.roundIndex}" />
+			<h:inputHidden id="disabledPrevButton" value="#{countUpPage.disabledPrevButton}" />
+			<h:inputHidden id="disabledNextButton" value="#{countUpPage.disabledNextButton}" />
+			<h:inputHidden id="viewNextButton" value="#{countUpPage.viewNextButton}" />
+			<h:inputHidden id="viewEndButton" value="#{countUpPage.viewEndButton}" />
+			<div>
+				<h1>ROUND<h:outputText value="#{countUpPage.roundIndex + 1}" /></h1>
+			</div>
+			<div>
+				<div><h:outputText id="totalPoint" value="#{countUpPage.totalPoint}" /></div>
+				<div id="throw">
+					<div id="throws1">
+						<p>Throw 1</p>
+						<h:selectOneMenu id="throwOneNumber" value="#{countUpPage.throwOneNumber}" >
+							<f:selectItems value="#{countUpPage.getNumberList()}" />
+						</h:selectOneMenu>
+						<h:selectOneMenu id="throwOneCount" value="#{countUpPage.throwOneCount}" >
+							<f:selectItems value="#{countUpPage.getCountList()}" />
+						</h:selectOneMenu>
+					</div>
+					<div id="throws2">
+						<p>Throw 2</p>
+						<h:selectOneMenu id="throwTwoNumber" value="#{countUpPage.throwTwoNumber}" >
+							<f:selectItems value="#{countUpPage.getNumberList()}" />
+						</h:selectOneMenu>
+						<h:selectOneMenu id="throwTwoCount" value="#{countUpPage.throwTwoCount}" >
+							<f:selectItems value="#{countUpPage.getCountList()}" />
+						</h:selectOneMenu>
+					</div>
+					<div id="throws3">
+						<p>Throw 3</p>
+						<h:selectOneMenu id="throwThreeNumber" value="#{countUpPage.throwThreeNumber}" >
+							<f:selectItems value="#{countUpPage.getNumberList()}" />
+						</h:selectOneMenu>
+						<h:selectOneMenu id="throwThreeCount" value="#{countUpPage.throwThreeCount}" >
+							<f:selectItems value="#{countUpPage.getCountList()}" />
+						</h:selectOneMenu>
+					</div>
+					<div id="buttonGameArea">
+						<div id="prevButtonArea">
+							<h:commandButton action="#{countUpPage.prevRound()}" value="Prev" disabled="#{countUpPage.disabledPrevButton}" />
+						</div>
+						<div id="nextButtonArea">
+							<h:commandButton action="#{countUpPage.nextRound()}" value="Next" disabled="#{countUpPage.disabledNextButton}" rendered="#{countUpPage.viewNextButton}" />
+							<h:commandButton action="#{countUpPage.endGame()}" value="End" rendered="#{countUpPage.viewEndButton}"/>
+						</div>
+					</div>
+					<div id="buttonArea">
+						<div id="gameResetButtonArea">
+							<h:commandButton action="#{countUpPage.reset()}" value="Reset" />
+						</div>
+						<div id="resultViewButtonArea">
+							<h:commandButton action="#{countUpResultPage.init()}" value="Result" />
+						</div>
+						<div id="gameExitButtonArea">
+							<h:commandButton action="#{mainMenuPage.init()}" value="Exit" />
+						</div>
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

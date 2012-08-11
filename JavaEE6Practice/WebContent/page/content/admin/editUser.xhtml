@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/page/template/adminLayout.xhtml">
+	<ui:define name="adminContent">
+		<h:form id="editUserForm">
+			<h:inputHidden id="viewMode" value="#{editUserPage.viewMode}" />
+			<h:inputHidden id="newEntryData" value="#{editUserPage.newEntryData}" />
+			<div id="messageRow">
+				<h:outputText value="#{editUserPage.infoMessage}" />
+				<h:messages errorClass="errorStyle" />
+			</div>
+			<div id="userIdRow">
+				<span id="userIdLabel">ユーザID：</span>
+				<span id="userIdInput"><h:inputText id="userId" value="#{editUserPage.userId}" readonly="#{editUserPage.viewMode}" /></span>
+			</div>
+			<div id="userNameRow">
+				<span id="nameLabel">ユーザ名</span>
+				<span id="nameInput"><h:inputText id="name" value="#{editUserPage.name}" readonly="#{editUserPage.viewMode}" /></span>
+			</div>
+			<div id="passwordRow">
+				<span id="passwordLabel">パスワード</span>
+				<span id="passwordInput"><h:inputSecret id="password" value="#{editUserPage.password}" readonly="#{editUserPage.viewMode}" redisplay="true"/></span>
+			</div>
+			<div id="authorityRow">
+				<h:selectManyCheckbox id="authority" value="#{editUserPage.selectedAuthority}" readonly="#{editUserPage.viewMode}">
+					<f:selectItems value="#{editUserPage.authorityItems}" />
+				</h:selectManyCheckbox>
+			</div>
+			<div id="buttonRow">
+				<h:commandButton action="#{editUserPage.initForUpdate(editUserPage.userId)}" value="編集" rendered="#{editUserPage.viewMode}" />
+				<h:commandButton action="#{editUserPage.update()}" value="更新" rendered="#{!editUserPage.viewMode}" />
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/page/template/layout.xhtml">
+	<ui:define name="content">
+		<h:form id="countUpHistoryDetailForm">
+			<div id="roundDetail">
+				<div id="playDateRow">
+					<span id="playDateLabel">プレー日付：</span>
+					<span id="playDateValue"><h:outputText id="playDate" value="#{countUpHistoryDetailPage.countUpBean.playDate}" /></span>
+				</div>
+				<div id="totalRow">
+					<span id="totalLabel">合計：</span>
+					<span id="totalValue"><h:outputText id="total" value="#{countUpHistoryDetailPage.countUpBean.total}" /></span>
+				</div>
+				<div id="statRow">
+					<span id="statsLabel">スタッツ：</span>
+					<span id="statsValue"><h:outputText id="stats" value="#{countUpHistoryDetailPage.countUpBean.stats}" /></span>
+				</div>
+				<table>
+					<tr>
+						<th>
+							ラウンド数
+						</th>
+						<th>
+							第一投
+						</th>
+						<th>
+							第二投
+						</th>
+						<th>
+							第三投
+						</th>
+					</tr>
+				<ui:repeat var="round"  value="#{countUpHistoryDetailPage.roundList}" varStatus="status">
+					<tr>
+						<td>
+							<h:outputText value="#{status.index + 1}" />
+						</td>
+						<ui:repeat var="throw" value="#{round.throwiList}">
+							<td>
+								<h:outputText value="#{throw.number.label}" />
+								<h:outputText value="/" />
+								<h:outputText value="#{throw.count.label}" />
+								<h:outputText value=" (" />
+								<h:outputText value="#{throw.point}" />
+								<h:outputText value=")" />
+							</td>
+						</ui:repeat>
+					</tr>
+				</ui:repeat>
+				</table>
+			</div>
+			<div id="buttonArea">
+				<h:commandButton action="#{countUpHistoryListPage.init()}" value="戻る" />
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

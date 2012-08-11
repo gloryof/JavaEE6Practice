@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://java.sun.com/jsp/jstl/core"
+	template="/page/template/layout.xhtml">
+	<ui:define name="content">
+		<h:form id="menuForm">
+			<div>
+				<h:commandLink action="#{mainMenuPage.logout()}" value="ログアウト" />
+			</div>
+			<c:if test="#{userSessionData.hasUserAuthority()}">
+				<div>
+					<ul>
+						<li>
+							ゲームプレー
+							<ul>
+								<li><h:commandLink action="#{countUpPage.init()}" value="カウントアップ" /></li>
+								<li>
+									ゼロワン
+									<ul>
+										<li><h:commandLink value="301" action="#{zeroOnePage.init(1)}" /></li>
+										<li><h:commandLink value="501" action="#{zeroOnePage.init(2)}" /></li>
+										<li><h:commandLink value="701" action="#{zeroOnePage.init(3)}" /></li>
+										<li><h:commandLink value="901" action="#{zeroOnePage.init(4)}" /></li>
+										<li><h:commandLink value="1101" action="#{zeroOnePage.init(5)}" /></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+						<li>
+							履歴
+							<ul>
+								<li><h:commandLink value="カウントアップ" action="#{countUpHistoryListPage.init()}" /></li>
+								<li>
+									ゼロワン
+									<ul>
+										<li><h:commandLink value="301" action="#{zeroOneHistoryListPage.init(1)}" /></li>
+										<li><h:commandLink value="501" action="#{zeroOneHistoryListPage.init(2)}" /></li>
+										<li><h:commandLink value="701" action="#{zeroOneHistoryListPage.init(3)}" /></li>
+										<li><h:commandLink value="901" action="#{zeroOneHistoryListPage.init(4)}" /></li>
+										<li><h:commandLink value="1101" action="#{zeroOneHistoryListPage.init(5)}" /></li>
+									</ul>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</c:if>
+			<c:if test="#{userSessionData.hasAdminAuthority()}">
+				<div>
+					<h:commandLink action="#{adminMenuPage.initPage()}"  value="システム管理" />
+				</div>
+			</c:if>
+		</h:form>
+	</ui:define>
+</ui:composition>

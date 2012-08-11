@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/page/template/layout.xhtml">
+	<ui:define name="content">
+		<h:form id="countUpResultForm">
+			<div>
+				<h1>カウントアップ結果</h1>
+			</div>
+			<div id="result">
+				<div id="totalRow">
+					<span id="totalLabel">TOTAL:</span>
+					<span id="totalValue">
+						<h:outputText id="totalPoint" value="#{countUpResultPage.totalPoint}" />
+					</span>
+				</div>
+				<div id="stats">
+					<span id="statsLabel">STATS:</span>
+					<span id="statsValue">
+						<h:outputText id="stats" value="#{countUpResultPage.stats}" />
+					</span>
+				</div>
+				<div id="buttonArea">
+					<h:commandButton action="#{countUpPage.review()}" value="Return Game" />
+					<h:commandButton action="#{mainMenuPage.init()}" value="Exit" rendered="#{countUpResultPage.viewExitGameButton}" />
+					<h:commandButton action="#{countUpResultPage.finish()}" value="Finish" rendered="#{countUpResultPage.viewFinshButton}" />
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

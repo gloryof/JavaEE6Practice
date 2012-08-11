@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="windows-31j" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/page/template/layout.xhtml">
+	<ui:define name="content">
+		<ui:insert name="adminMenu">
+			<ui:include src="/page/content/admin/adminMenuList.xhtml" />
+		</ui:insert>
+		<ui:insert name="adminContent">
+		</ui:insert>
+		<h:form id="menuBackForm">
+			<div>
+				<h:commandLink action="#{mainMenuPage.init()}" value="メインメニューに戻る" />
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

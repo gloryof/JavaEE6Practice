@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="Windows-31J" ?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	template="/page/template/layout.xhtml">
+	<ui:define name="content">
+		<h:form id="zeroOneResultForm">
+			<div>
+				<h1>ゼロワン結果</h1>
+			</div>
+			<div id="result">
+				<div id="dartsOutRoundRow">
+					<span id="dartsOutRoundRowLabel">DARTS OUT ROUND:</span>
+					<span id="dartsOutRoundRowValue">
+						<h:outputText id="dartsOutRound" value="#{zeroOneResultPage.dartsOutRound}" />
+					</span>
+				</div>
+				<div id="statsRow">
+					<span id="statsLabel">STATS:</span>
+					<span id="statsValue">
+						<h:outputText id="stats" value="#{zeroOneResultPage.stats}" />
+					</span>
+				</div>
+				<div id="restPointRow">
+					<span id="restPointLabel">REST POINT:</span>
+					<span id="restPointValue">
+						<h:outputText id="restPoint" value="#{zeroOneResultPage.restPoint}" />
+					</span>
+				</div>
+				<div id="buttonArea">
+					<h:commandButton action="#{zeroOnePage.review()}" value="Return Game" />
+					<h:commandButton action="#{mainMenuPage.init()}" value="Exit" rendered="#{zeroOneResultPage.viewExitGameButton}" />
+					<h:commandButton action="#{zeroOneResultPage.finish()}" value="Finish" rendered="#{zeroOneResultPage.viewFinshButton}" />
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>
